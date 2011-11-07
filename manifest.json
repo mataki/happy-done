@@ -1,6 +1,6 @@
 {
   "name": "Happy Done",
-  "version": "0.1",
+  "version": "0.2",
   "background_page": "background.html",
   "permissions": [
     "https://*.backlog.jp/"
