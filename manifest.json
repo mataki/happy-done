@@ -1,0 +1,11 @@
+{
+  "name": "Happy Done",
+  "version": "0.1",
+  "background_page": "background.html",
+  "permissions": [
+  ],
+  "browser_action": {
+    "name": "Play sound"
+  },
+  "content_security_policy": "default-src 'self'"
+}
