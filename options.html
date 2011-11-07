@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
   <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <style>
     </style>
     <script src="jquery.min.js"></script>
@@ -8,7 +9,24 @@
   </head>
   <body>
     <h2>Happy Done</h2>
-    <input type="text" id="select-regex"></input>
-    <input type="text" id="rss-url"></input>
+    <p>
+      <label for="select-regex">抽出キーワード</label>
+      <input type="text" id="select-regex"></input>
+      <br />
+      "状態:完了" がおすすめ設定です。
+    </p>
+    <p>
+      <label for="space-id">スペースID</label>
+      <input type="text" id="space-id"></input>
+      <br />
+      スペースIDを入力してください。 http://xxxx.backlog.jp/ の xxxx の部分です。
+    </p>
+    <p>
+      <label for="project-id">プロジェクトID</label>
+      <input type="text" id="project-id"></input>
+      <br />
+      プロジェクトIDを入力して下さい。 https://xxxx.backlog.jp/projects/yyyy の yyyy の部分です。
+      <span id="auth-link"></span>
+    </p>
   </body>
 </html>
