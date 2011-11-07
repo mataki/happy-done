@@ -4,8 +4,9 @@
   "background_page": "background.html",
   "permissions": [
   ],
+  // これを入れると translate.google.com から読み込めない
+  //  "content_security_policy": "default-src 'self' http://translate.google.com; media-src 'self' http://translate.google.com",
   "browser_action": {
     "name": "Play sound"
-  },
-  "content_security_policy": "default-src 'self'"
+  }
 }
