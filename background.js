@@ -8,6 +8,7 @@ function playNextAudio(){
   var audio = audioQueue.shift();
   if(audio != undefined){
     audio.addEventListener('ended', function(){
+      stopped = true;
       playNextAudio();
     });
     audio.addEventListener('error', function(){
@@ -16,8 +17,6 @@ function playNextAudio(){
     });
     audio.play();
     stopped = false;
-  } else {
-    stopped = true;
   }
 }
 
@@ -48,24 +47,22 @@ function getRSS(rss){
   var url = localStorage.getItem('rss-url');
   xhr.open("GET", url, true);
   xhr.onreadystatechange = function() {
-    console.log('---- callback');
+    if((xhr.readyState == 4) && (xhr.status == 200)){
+      var xml = xhr.responseXML;;
 
-    var xml;
-    xml = xhr.responseXML;
+      if(xml){
+        var items = xml.getElementsByTagName('item');
+        var matches = getMatchedElements(items);
 
-    if(xml){
-      var items = xml.getElementsByTagName('item');
-      var matches = getMatchedElements(items);
-
-      cheerItems(matches);
+        cheerItems(selectUnnoticedItems(matches));
+      }
     }
   };
   xhr.send();
 }
 
 function clickButton(){
-  playAudio();
-  playText("Hi");
+  getRSS();
 }
 
 function getMatchedElements(items){
@@ -93,5 +90,26 @@ function cheerItems(items){
   }
 }
 
+function selectUnnoticedItems(items){
+  var result = [];
+
+  var lastSelectedDate = localStorage.getItem('last-selected-date') || 0;
+  var latestDate = lastSelectedDate;
+
+  for(var i = 0; i< items.length; i++){
+    var item = items[i];
+    var timeStr = item.childNodes[13].textContent;
+    var time = Date.parse(timeStr);
+    if(lastSelectedDate < time){
+      result.push(item);
+      if(latestDate < time){
+        latestDate = time;
+      }
+    }
+  }
+  localStorage.setItem('last-selected-date', latestDate);
+
+  return result;
+}
 
 chrome.browserAction.onClicked.addListener(clickButton);
