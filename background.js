@@ -1,7 +1,8 @@
-/* global console, Audio, chrome, localStorage */
+/* global console, Audio, chrome, localStorage, setInterval, clearInterval */
 
 var audioQueue = [];
 var stopped = true;
+var timer;
 
 function playNextAudio(){
   console.log('----- playNextAudio');
@@ -61,10 +62,6 @@ function getRSS(rss){
   xhr.send();
 }
 
-function clickButton(){
-  getRSS();
-}
-
 function getMatchedElements(items){
   var matchItems = [];
   for (var i = 0; i < items.length; i++) {
@@ -112,4 +109,26 @@ function selectUnnoticedItems(items){
   return result;
 }
 
+function clickButton(){
+  if(timer){
+    clearInterval(timer);
+    timer = null;
+  } else {
+    getRSS();
+    timer = setInterval(getRSS, 1000 * 60 * 10);
+  }
+  setIcon();
+}
+
+function setIcon(){
+  var icon;
+  if(timer){
+    icon = "happy-done.png";
+  } else {
+    icon = "happy-done-gray.png";
+  }
+  chrome.browserAction.setIcon({ path: icon });
+}
+
 chrome.browserAction.onClicked.addListener(clickButton);
+setIcon();
