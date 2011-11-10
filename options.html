@@ -2,31 +2,52 @@
 <html>
   <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <style>
-    </style>
+    <link rel="stylesheet" href="bootstrap.min.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="options.css" type="text/css" media="all" />
     <script src="jquery.min.js"></script>
     <script src="options.js"></script>
   </head>
   <body>
-    <h2>Happy Done</h2>
-    <p>
-      <label for="select-regex">抽出キーワード</label>
-      <input type="text" id="select-regex"></input>
-      <br />
-      "状態:完了" がおすすめ設定です。
-    </p>
-    <p>
-      <label for="space-id">スペースID</label>
-      <input type="text" id="space-id"></input>
-      <br />
-      スペースIDを入力してください。 http://xxxx.backlog.jp/ の xxxx の部分です。
-    </p>
-    <p>
-      <label for="project-id">プロジェクトID</label>
-      <input type="text" id="project-id"></input>
-      <br />
-      プロジェクトIDを入力して下さい。 https://xxxx.backlog.jp/projects/yyyy の yyyy の部分です。
-      <span id="auth-link"></span>
-    </p>
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <h2><a class="brand" href="#">Happy Done</a></h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+
+        <form>
+          <fieldset>
+            <div class="clearfix">
+              <label for="select-regex">抽出キーワード</label>
+              <div class="input">
+                <input type="text" id="select-regex"></input>
+                <span class="help-block">"状態:完了" がおすすめ設定です。</span>
+              </div>
+            </div><!-- /clearfix -->
+
+            <div class="clearfix">
+              <label for="space-id">スペースID</label>
+              <div class="input">
+                <input type="text" id="space-id"></input>
+                <span class="help-block">スペースIDを入力してください。 http://xxxx.backlog.jp/ の xxxx の部分です。</span>
+              </div>
+            </div>
+
+            <div class="clearfix">
+              <label for="project-id">プロジェクトID</label>
+              <div class="input">
+                <input type="text" id="project-id"></input>
+                <span class="help-block">プロジェクトIDを入力して下さい。 https://xxxx.backlog.jp/projects/yyyy の yyyy の部分です。</span>
+                <span id="auth-link"></span>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
   </body>
 </html>
